@@ -1,0 +1,38 @@
+type(flow): <class 'numpy.ndarray'>
+type(valid_2D): <class 'numpy.ndarray'>
+[[False False False ... False False False]
+ [False False False ... False  True False]
+ [False False False ... False False False]
+ ...
+ [False False False ... False False False]
+ [False False False ... False False False]
+ [False False False ... False False False]]
+type(event_representation): <class 'torch.Tensor'>
+type(self.name_idx): <class 'int'>
+
+train:
+  DSEC数据集：
+   train.py
+   dataloader:train_loader_dces.py
+
+  MVSEC数据集：
+    train_MVSEC.py
+    dataloader:train_loader_mvsec_flow.py
+
+test:
+  DSEC数据集:
+   main.py
+   dataloader:loader_dsec.py
+
+  MVSEC数据集：
+   mvsec_main.py
+   dataloader:loader_mvsec_flow.py
+
+
+
+get_pre_flow.py: dsec dataset , 利用预测的flow和gt flow对事件进行运动补偿，计算事件边缘导数
+MVSEC_gradient_test.py:mvsec dataset, 利用预测的flow和gt flow对事件进行运动补偿，计算事件边缘导数
+MVSEC_test_train_json.py:随机将数据集分为train和test,分别存储为config/mvsec_train_list.json和config/mvsec_test_list.json
+preprocess_MVSEC_flow.py:将*_gt_flow_dist.npz中的时间保存为timestamps_flow.txt文件，并将x\y flow进行组合，每一个npy文件表示与时间文件中的一行所对应，光流格式（2， 260， 346）
+preprocess_MVSEC_events.py:将*_data.hdf5文件中的事件读取出来，与raw_image里面的time对应，每一个.h5文件包含了timestamps_images.txt中每一行时间戳之前产生的事件,格式为(ts,x,y,p)
+testdata_from_train:将DSEC数据集分为train和test

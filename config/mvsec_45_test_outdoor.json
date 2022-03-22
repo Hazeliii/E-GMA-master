@@ -1,0 +1,30 @@
+{
+    "name": "contnet_only_Att_SELayer",
+    "cuda": true,
+    "gpu": 0,
+    "subtype": "standard",
+    "save_dir": "saved",
+    "data_loader": {
+        "test": {
+            "args": {
+                "batch_size": 1,
+                "shuffle": false,
+                "sequence_length": 1,
+                "num_voxel_bins": 5,
+                "align_to": "images",
+                "datasets": {
+                    "outdoor_day": [
+                        1, 2
+                    ]
+                },
+                "transforms": [
+                    "EventSequenceToVoxelGrid_Pytorch(num_bins=5, normalize=True, gpu=True)",
+                    "RandomCropping(crop_height=256, crop_width=256, fixed=True)"
+                ]
+            }
+        }
+    },
+    "test": {
+        "checkpoint": "checkpoints_mvsec_outdoor/100000_content_only_Attention_SELayer.pth"
+    }
+}
